@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Language Selector</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts - Inter -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Glassmorphism Kontteyner Efekti */
+    .glass-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Seçili Dil Butonu Vurgu Efekti */
+    .glass-active-pill {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-4">
+
+  <!-- Arka Plan Dekoratif Işık Halkaları (Cam Efektini Öne Çıkarmak İçin) -->
+  <div class="fixed top-1/3 left-1/3 w-72 h-72 bg-purple-600/30 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-1/3 right-1/3 w-80 h-80 bg-blue-600/30 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Başlık ve Tanıtım -->
+  <div class="text-center mb-8 z-10 space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight text-white/90">Dil Seçim Komponenti</h1>
+    <p class="text-slate-400 text-sm">Açılır menüsüz, yatay Glassmorphism dil seçici</p>
+  </div>
+
+  <!-- GLASS LANGUAGE SELECTOR CONTAINER -->
+  <div class="glass-container rounded-full p-2 z-10 transition-all duration-300">
+    <div class="flex items-center gap-1 sm:gap-2 relative">
+      
+      <!-- EN (İngilizce) -->
+      <button 
+        onclick="selectLanguage('EN')" 
+        id="btn-EN"
+        class="lang-btn relative flex flex-col items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 group cursor-pointer focus:outline-none"
+      >
+        <span class="lang-text font-semibold text-base tracking-wider transition-all duration-300 text-slate-400 group-hover:text-white">EN</span>
+        <span class="lang-flag text-xs mt-0.5 transition-all duration-300 transform scale-0 opacity-0 h-0">🇬🇧</span>
+      </button>
+
+      <!-- DE (Almanca) -->
+      <button 
+        onclick="selectLanguage('DE')" 
+        id="btn-DE"
+        class="lang-btn relative flex flex-col items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 group cursor-pointer focus:outline-none"
+      >
+        <span class="lang-text font-semibold text-base tracking-wider transition-all duration-300 text-slate-400 group-hover:text-white">DE</span>
+        <span class="lang-flag text-xs mt-0.5 transition-all duration-300 transform scale-0 opacity-0 h-0">🇩🇪</span>
+      </button>
+
+      <!-- TR (Türkçe) - Varsayılan Seçili -->
+      <button 
+        onclick="selectLanguage('TR')" 
+        id="btn-TR"
+        class="lang-btn relative flex flex-col items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 group cursor-pointer focus:outline-none glass-active-pill"
+      >
+        <span class="lang-text font-semibold text-base tracking-wider transition-all duration-300 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">TR</span>
+        <span class="lang-flag text-xs mt-0.5 transition-all duration-300 transform scale-100 opacity-100 h-auto">🇹🇷</span>
+      </button>
+
+      <!-- PT (Portekizce) -->
+      <button 
+        onclick="selectLanguage('PT')" 
+        id="btn-PT"
+        class="lang-btn relative flex flex-col items-center justify-center px-5 py-2.5 rounded-full transition-all duration-300 group cursor-pointer focus:outline-none"
+      >
+        <span class="lang-text font-semibold text-base tracking-wider transition-all duration-300 text-slate-400 group-hover:text-white">PT</span>
+        <span class="lang-flag text-xs mt-0.5 transition-all duration-300 transform scale-0 opacity-0 h-0">🇵🇹</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Dinamik Bilgi Kartı (Seçilen dili canlı gösterir) -->
+  <div class="mt-8 z-10 glass-container px-6 py-3 rounded-2xl text-sm text-slate-300 flex items-center gap-2">
+    <span>Seçili Dil:</span>
+    <span id="selected-label" class="font-bold text-white flex items-center gap-1.5">
+      <span>Türkçe</span>
+      <span>🇹🇷</span>
+    </span>
+  </div>
+
+  <script>
+    // Dil Verileri
+    const languages = {
+      'EN': { name: 'English', flag: '🇬🇧' },
+      'DE': { name: 'Deutsch', flag: '🇩🇪' },
+      'TR': { name: 'Türkçe', flag: '🇹🇷' },
+      'PT': { name: 'Português', flag: '🇵🇹' }
+    };
+
+    // Dil Değiştirme Fonksiyonu
+    function selectLanguage(langCode) {
+      const allButtons = document.querySelectorAll('.lang-btn');
+      
+      allButtons.forEach(btn => {
+        const textSpan = btn.querySelector('.lang-text');
+        const flagSpan = btn.querySelector('.lang-flag');
+
+        if (btn.id === `btn-${langCode}`) {
+          // AKTİF DURUM: Parlak beyaz yazı, arka plan kapsülü ve görünür bayrak
+          btn.classList.add('glass-active-pill');
+          
+          textSpan.classList.remove('text-slate-400');
+          textSpan.classList.add('text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]');
+          
+          flagSpan.classList.remove('scale-0', 'opacity-0', 'h-0');
+          flagSpan.classList.add('scale-100', 'opacity-100', 'h-auto');
+        } else {
+          // PASİF DURUM: Mat gri yazı, gizli bayrak
+          btn.classList.remove('glass-active-pill');
+          
+          textSpan.classList.add('text-slate-400');
+          textSpan.classList.remove('text-white', 'drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]');
+          
+          flagSpan.classList.add('scale-0', 'opacity-0', 'h-0');
+          flagSpan.classList.remove('scale-100', 'opacity-100', 'h-auto');
+        }
+      });
+
+      // Bilgi Etiketini Güncelle
+      const label = document.getElementById('selected-label');
+      label.innerHTML = `<span>${languages[langCode].name}</span> <span>${languages[langCode].flag}</span>`;
+    }
+  </script>
+</body>
+</html>

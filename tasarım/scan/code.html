@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "error": "#ffb4ab",
+          "on-primary-container": "#f2f5ff",
+          "surface-dim": "#0b1326",
+          "outline": "#8c919c",
+          "background": "#0b1326",
+          "on-secondary-container": "#c4b579",
+          "surface-bright": "#31394d",
+          "primary-fixed-dim": "#a6c8ff",
+          "inverse-surface": "#dae2fd",
+          "secondary-fixed": "#f3e3a2",
+          "error-container": "#93000a",
+          "on-primary-fixed-variant": "#004786",
+          "on-secondary": "#393001",
+          "on-tertiary": "#00354a",
+          "secondary-container": "#514715",
+          "on-secondary-fixed": "#211b00",
+          "primary": "#a6c8ff",
+          "on-surface": "#dae2fd",
+          "surface-container-high": "#222a3d",
+          "on-secondary-fixed-variant": "#514715",
+          "on-primary-fixed": "#001c3b",
+          "tertiary-container": "#0078a3",
+          "on-tertiary-fixed": "#001e2c",
+          "tertiary-fixed": "#c4e7ff",
+          "surface-container-low": "#131b2e",
+          "surface": "#0b1326",
+          "on-primary": "#00315f",
+          "on-error": "#690005",
+          "secondary-fixed-dim": "#d6c788",
+          "primary-fixed": "#d5e3ff",
+          "surface-variant": "#2d3449",
+          "outline-variant": "#424751",
+          "surface-tint": "#a6c8ff",
+          "on-error-container": "#ffdad6",
+          "on-background": "#dae2fd",
+          "primary-container": "#3971b8",
+          "secondary": "#d6c788",
+          "on-tertiary-fixed-variant": "#004c69",
+          "on-surface-variant": "#c2c6d2",
+          "tertiary-fixed-dim": "#7bd0ff",
+          "inverse-primary": "#225fa5",
+          "on-tertiary-container": "#ebf6ff",
+          "inverse-on-surface": "#283044",
+          "surface-container-highest": "#2d3449",
+          "tertiary": "#7bd0ff",
+          "surface-container": "#171f33",
+          "surface-container-lowest": "#060e20"
+        },
+        borderRadius: {
+          "DEFAULT": "0.5rem",
+          "lg": "0.75rem",
+          "xl": "1rem",
+          "2xl": "1.25rem",
+          "full": "9999px"
+        },
+        spacing: {
+          "gutter": "1rem",
+          "margin": "1rem",
+          "space-md": "0.75rem",
+          "space-xl": "1.5rem",
+          "space-lg": "1rem",
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem"
+        },
+        fontFamily: {
+          "headline-sm": ["Sora"],
+          "headline-xl-mobile": ["Sora"],
+          "label-md": ["Sora"],
+          "label-sm": ["Sora"],
+          "body-sm": ["Hanken Grotesk"],
+          "headline-md": ["Sora"],
+          "headline-lg": ["Sora"],
+          "display-ball": ["JetBrains Mono"],
+          "body-md": ["Hanken Grotesk"],
+          "body-lg": ["Hanken Grotesk"],
+          "headline-xl": ["Sora"],
+          "label-lg": ["Sora"]
+        },
+        fontSize: {
+          "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+          "headline-xl-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+          "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+          "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+          "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+          "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+          "display-ball": ["18px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+          "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+          "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+          "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+        }
+      }
+    }
+  }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-[#0b1326] font-body-md text-body-md text-[#dae2fd] antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-[#0d1b33]/90 backdrop-blur-xl pt-safe shadow-[0_4px_20px_rgba(0,0,0,0.5)] border-b border-[#2d3449]/80"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Kazanan Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XFPlrPTDM73yM26raZnukNLTcAOOORXYWUQN4XKuQkyk_NyOKtNhCab1Vn6XYDpKQhBHS1mbLzPL60pZtpxbcdGoXU3KmTYlEhZbHQjjJFeM2DltR4P4USWyDajaMv4FWI0724UEgoOUe4lZvhyMb84tXwCijrnnCeyDsoC4LExJleLSomr3x8yCrOe3w8cpoK1BhfEyAg0QOn69MIgDdgYI_yNf6jtWyJRH5LcZIdxTZPGdaYpy1x8Kg"/><span class="font-headline-sm text-headline-sm text-[#f2f5ff] tracking-wide hidden min-[360px]:inline">Kazanan</span></div><div class="flex items-center"><h1 class="font-label-lg text-label-lg text-[#a6c8ff] tracking-wider uppercase px-space-xs">Scan</h1></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1 bg-[#171f33] rounded-xl px-2.5 h-11 border border-[#2d3449] text-[#a6c8ff] cursor-pointer hover:text-[#f2f5ff] transition-colors shrink-0"><span class="material-symbols-outlined text-[18px] text-[#a6c8ff]">translate</span><select class="bg-transparent font-label-md text-label-md text-[#a6c8ff] outline-none cursor-pointer tracking-wider"><option class="bg-[#171f33] text-[#dae2fd]" selected="" value="TR">TR</option><option class="bg-[#171f33] text-[#dae2fd]" value="EN">EN</option><option class="bg-[#171f33] text-[#dae2fd]" value="PT">PT</option><option class="bg-[#171f33] text-[#dae2fd]" value="FR">FR</option><option class="bg-[#171f33] text-[#dae2fd]" value="DE">DE</option></select></div><button class="w-11 h-11 flex items-center justify-center rounded-xl bg-[#171f33] text-[#a6c8ff] hover:text-[#f2f5ff] border border-[#2d3449] transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-[#3971b8] text-[#f2f5ff] flex items-center justify-center shadow"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-28 bg-[#0b1326]"><div class="flex flex-col w-full gap-space-md">
+<!-- HUD Utility Toolbar -->
+<div class="flex items-center justify-between px-space-xs pt-space-xs">
+<div class="flex items-center gap-space-sm bg-surface-container-low/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_currentColor]"></div>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">HD 1080P • 60 FPS</span>
+</div>
+<!-- Quick Tool Action Controls -->
+<div class="flex items-center gap-space-sm">
+<button class="h-10 w-10 flex items-center justify-center rounded-xl bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface-variant transition-all shadow-sm" id="torch-btn">
+<span class="material-symbols-outlined text-[20px]" id="torch-icon">flash_on</span>
+</button>
+<button class="h-10 w-10 flex items-center justify-center rounded-xl bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface-variant transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">photo_library</span>
+</button>
+</div>
+</div>
+<!-- Viewfinder Optical Card -->
+<div class="relative w-full aspect-[4/3] rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xl flex items-center justify-center">
+<!-- Camera Feed Backdrop Simulation -->
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/60 via-transparent to-surface-container-lowest/90 z-10 pointer-events-none"></div>
+<!-- Optical Mesh Pattern Overlay -->
+<div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#3971b8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<!-- Camera Alignment Reticle Viewfinder -->
+<div class="relative w-[82%] h-[76%] z-20 flex flex-col justify-between p-2">
+<!-- Celtic Blue Cyber Brackets -->
+<div class="flex justify-between items-start">
+<div class="w-8 h-8 rounded-tl-xl border-t-[3px] border-l-[3px] border-primary-container shadow-[0_0_12px_rgba(57,113,184,0.7)]"></div>
+<div class="w-8 h-8 rounded-tr-xl border-t-[3px] border-r-[3px] border-primary-container shadow-[0_0_12px_rgba(57,113,184,0.7)]"></div>
+</div>
+<!-- Center Crosshair & Alignment Ring -->
+<div class="self-center flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center animate-spin" style="animation-duration: 16s;">
+<div class="w-2 h-2 rounded-full bg-primary/70"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant/90 tracking-widest bg-surface-container-low/80 px-2 py-0.5 rounded-full shadow-sm">BİLETİ HİZALAYIN</span>
+</div>
+<!-- Laser Scanner Line -->
+<div class="absolute left-2 right-2 h-[2.5px] bg-gradient-to-r from-transparent via-tertiary-fixed-dim to-transparent shadow-[0_0_16px_#7bd0ff,0_0_30px_#3971b8] pointer-events-none transition-transform" id="scanner-laser" style="top: 20%;"></div>
+<div class="flex justify-between items-end">
+<div class="w-8 h-8 rounded-bl-xl border-b-[3px] border-l-[3px] border-primary-container shadow-[0_0_12px_rgba(57,113,184,0.7)]"></div>
+<div class="w-8 h-8 rounded-br-xl border-b-[3px] border-r-[3px] border-primary-container shadow-[0_0_12px_rgba(57,113,184,0.7)]"></div>
+</div>
+</div>
+<!-- Live QR / Barcode Tracker Floating Indicators -->
+<div class="absolute bottom-3 left-4 right-4 z-20 flex justify-between items-center text-on-surface-variant font-label-caps text-label-caps opacity-75">
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span> OTO-ODAK AÇIK</span>
+<span class="font-label-numeric-md text-label-numeric-md text-primary">ISO 240 • F/1.8</span>
+</div>
+</div>
+<!-- Primary and Secondary Scan Triggers -->
+<div class="flex flex-col gap-space-sm w-full">
+<button class="w-full h-[52px] rounded-xl bg-gradient-to-r from-primary-container via-inverse-primary to-primary-container text-on-primary-container font-headline-md text-headline-md flex items-center justify-center gap-space-sm shadow-[0_8px_24px_rgba(57,113,184,0.45)] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+<span>Barkodu Tara</span>
+</button>
+<button class="w-full h-12 rounded-xl bg-surface-container text-primary font-headline-sm text-headline-sm flex items-center justify-center gap-space-sm hover:bg-surface-container-high active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]">keyboard</span>
+<span>Manuel Numara Gir</span>
+</button>
+</div>
+<!-- Recent Scan Card Notification -->
+<div class="w-full rounded-2xl bg-surface-container p-space-md shadow-md flex items-center justify-between">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-11 h-11 rounded-xl bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[24px]">receipt_long</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Son Taranan: Süper Loto</span>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container shrink-0">BAŞARILI</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Bilet #8492-91823 • 2 dk önce</p>
+</div>
+</div>
+<button class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-primary hover:text-on-primary-container shrink-0 transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<!-- Multi-Country Game Support Deck -->
+<div class="w-full rounded-2xl bg-surface-container-low p-space-md flex flex-col gap-space-md shadow-inner">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Desteklenen Şans Oyunları</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary-fixed bg-secondary-container/80 px-2.5 py-1 rounded-full uppercase tracking-wider">Otomatik Algılama</span>
+</div>
+<!-- Country Pill 1: Türkiye -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant font-semibold">TÜRKİYE</span>
+<div class="h-px flex-1 bg-surface-container-highest"></div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">Sayısal Loto</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">Süper Loto</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">Şans Topu</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">Milli Piyango</span>
+</div>
+</div>
+<!-- Country Pill 2: Avrupa -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant font-semibold">AVRUPA</span>
+<div class="h-px flex-1 bg-surface-container-highest"></div>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">EuroMillions</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">EuroDreams</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm">M1lhão</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic scanning laser oscillation
+  (function() {
+    const laser = document.getElementById('scanner-laser');
+    let pos = 18;
+    let direction = 1;
+    function animateLaser() {
+      if (laser) {
+        pos += 0.9 * direction;
+        if (pos >= 78) {
+          direction = -1;
+        } else if (pos <= 18) {
+          direction = 1;
+        }
+        laser.style.top = pos + '%';
+      }
+      requestAnimationFrame(animateLaser);
+    }
+    requestAnimationFrame(animateLaser);
+
+    // Flashlight Toggle Interaction
+    const torchBtn = document.getElementById('torch-btn');
+    const torchIcon = document.getElementById('torch-icon');
+    let torchActive = false;
+    if (torchBtn && torchIcon) {
+      torchBtn.addEventListener('click', () => {
+        torchActive = !torchActive;
+        if (torchActive) {
+          torchBtn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+          torchBtn.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed');
+          torchIcon.textContent = 'flash_off';
+        } else {
+          torchBtn.classList.remove('bg-secondary-fixed', 'text-on-secondary-fixed');
+          torchBtn.classList.add('bg-surface-container', 'text-on-surface-variant');
+          torchIcon.textContent = 'flash_on';
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-[#0d1b33]/95 backdrop-blur-xl border-t border-[#2d3449]/80 shadow-[0_-4px_24px_rgba(0,0,0,0.6)]" data-active-classes="text-[#3971b8] font-bold [&amp;&gt;div]:bg-[#3971b8]/20 [&amp;&gt;div&gt;span]:text-[#3971b8]"><div class="flex justify-around items-center h-20 px-space-xs relative"><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="home" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">confirmation_number</span></div><span class="font-label-sm text-label-sm">Home</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="lucky-ai" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">auto_awesome</span></div><span class="font-label-sm text-label-sm">Lucky AI</span></a><div class="flex flex-col items-center justify-center min-w-[64px] relative -top-3.5"><a aria-current="page" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#225fa5] via-[#3971b8] to-[#7bd0ff] flex items-center justify-center shadow-[0_8px_24px_rgba(57,113,184,0.55),0_0_16px_rgba(57,113,184,0.35)] border-2 border-[#a6c8ff]/40 active:scale-95 transition-transform text-[#3971b8] font-bold [&amp;&gt;div]:bg-[#3971b8]/20 [&amp;&gt;div&gt;span]:text-[#3971b8]" data-path="scan" href="#"><span class="material-symbols-outlined text-[30px]">barcode_scanner</span></a><span class="font-label-sm text-label-sm text-[#a6c8ff] font-semibold mt-1">Scan</span></div><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="results" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">emoji_events</span></div><span class="font-label-sm text-label-sm">Results</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="report" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">analytics</span></div><span class="font-label-sm text-label-sm">Report</span></a></div></nav>
+</body></html>

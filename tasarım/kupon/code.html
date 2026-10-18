@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "error": "#ffb4ab",
+          "on-primary-container": "#f2f5ff",
+          "surface-dim": "#0b1326",
+          "outline": "#8c919c",
+          "background": "#0b1326",
+          "on-secondary-container": "#c4b579",
+          "surface-bright": "#31394d",
+          "primary-fixed-dim": "#a6c8ff",
+          "inverse-surface": "#dae2fd",
+          "secondary-fixed": "#f3e3a2",
+          "error-container": "#93000a",
+          "on-primary-fixed-variant": "#004786",
+          "on-secondary": "#393001",
+          "on-tertiary": "#00354a",
+          "secondary-container": "#514715",
+          "on-secondary-fixed": "#211b00",
+          "primary": "#a6c8ff",
+          "on-surface": "#dae2fd",
+          "surface-container-high": "#222a3d",
+          "on-secondary-fixed-variant": "#514715",
+          "on-primary-fixed": "#001c3b",
+          "tertiary-container": "#0078a3",
+          "on-tertiary-fixed": "#001e2c",
+          "tertiary-fixed": "#c4e7ff",
+          "surface-container-low": "#131b2e",
+          "surface": "#0b1326",
+          "on-primary": "#00315f",
+          "on-error": "#690005",
+          "secondary-fixed-dim": "#d6c788",
+          "primary-fixed": "#d5e3ff",
+          "surface-variant": "#2d3449",
+          "outline-variant": "#424751",
+          "surface-tint": "#a6c8ff",
+          "on-error-container": "#ffdad6",
+          "on-background": "#dae2fd",
+          "primary-container": "#3971b8",
+          "secondary": "#d6c788",
+          "on-tertiary-fixed-variant": "#004c69",
+          "on-surface-variant": "#c2c6d2",
+          "tertiary-fixed-dim": "#7bd0ff",
+          "inverse-primary": "#225fa5",
+          "on-tertiary-container": "#ebf6ff",
+          "inverse-on-surface": "#283044",
+          "surface-container-highest": "#2d3449",
+          "tertiary": "#7bd0ff",
+          "surface-container": "#171f33",
+          "surface-container-lowest": "#060e20"
+        },
+        borderRadius: {
+          "DEFAULT": "0.5rem",
+          "lg": "0.75rem",
+          "xl": "1rem",
+          "2xl": "1.25rem",
+          "full": "9999px"
+        },
+        spacing: {
+          "gutter": "1rem",
+          "margin": "1rem",
+          "space-md": "0.75rem",
+          "space-xl": "1.5rem",
+          "space-lg": "1rem",
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem"
+        },
+        fontFamily: {
+          "headline-sm": ["Sora"],
+          "headline-xl-mobile": ["Sora"],
+          "label-md": ["Sora"],
+          "label-sm": ["Sora"],
+          "body-sm": ["Hanken Grotesk"],
+          "headline-md": ["Sora"],
+          "headline-lg": ["Sora"],
+          "display-ball": ["JetBrains Mono"],
+          "body-md": ["Hanken Grotesk"],
+          "body-lg": ["Hanken Grotesk"],
+          "headline-xl": ["Sora"],
+          "label-lg": ["Sora"]
+        },
+        fontSize: {
+          "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+          "headline-xl-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+          "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+          "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+          "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+          "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+          "display-ball": ["18px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+          "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+          "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+          "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+        }
+      }
+    }
+  }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-[#0b1326] font-body-md text-body-md text-[#dae2fd] antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-[#0d1b33]/90 backdrop-blur-xl pt-safe shadow-[0_4px_20px_rgba(0,0,0,0.5)] border-b border-[#2d3449]/80"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Kazanan Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XFPlrPTDM73yM26raZnukNLTcAOOORXYWUQN4XKuQkyk_NyOKtNhCab1Vn6XYDpKQhBHS1mbLzPL60pZtpxbcdGoXU3KmTYlEhZbHQjjJFeM2DltR4P4USWyDajaMv4FWI0724UEgoOUe4lZvhyMb84tXwCijrnnCeyDsoC4LExJleLSomr3x8yCrOe3w8cpoK1BhfEyAg0QOn69MIgDdgYI_yNf6jtWyJRH5LcZIdxTZPGdaYpy1x8Kg"/><span class="font-headline-sm text-headline-sm text-[#f2f5ff] tracking-wide hidden min-[360px]:inline">Kazanan</span></div><div class="flex items-center"><h1 class="font-label-lg text-label-lg text-[#a6c8ff] tracking-wider uppercase px-space-xs">Lucky Ai</h1></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-1 bg-[#171f33] rounded-xl px-2.5 h-11 border border-[#2d3449] text-[#a6c8ff] cursor-pointer hover:text-[#f2f5ff] transition-colors shrink-0"><span class="material-symbols-outlined text-[18px] text-[#a6c8ff]">translate</span><select class="bg-transparent font-label-md text-label-md text-[#a6c8ff] outline-none cursor-pointer tracking-wider"><option class="bg-[#171f33] text-[#dae2fd]" selected="" value="TR">TR</option><option class="bg-[#171f33] text-[#dae2fd]" value="EN">EN</option><option class="bg-[#171f33] text-[#dae2fd]" value="PT">PT</option><option class="bg-[#171f33] text-[#dae2fd]" value="FR">FR</option><option class="bg-[#171f33] text-[#dae2fd]" value="DE">DE</option></select></div><button class="w-11 h-11 flex items-center justify-center rounded-xl bg-[#171f33] text-[#a6c8ff] hover:text-[#f2f5ff] border border-[#2d3449] transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-[#3971b8] text-[#f2f5ff] flex items-center justify-center shadow"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-28 bg-[#0b1326]"><div class="flex flex-col w-full pb-24">
+<!-- Quantum Engine Visual Spark Header -->
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low p-space-md shadow-xl mb-space-md">
+<div class="absolute -right-6 -top-6 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
+<div class="absolute -left-6 -bottom-6 w-28 h-28 rounded-full bg-tertiary-container/20 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<div class="inline-flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-primary-container/30 text-primary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">AI Quantum Tahmin Motoru v4.2</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-caps text-label-caps text-secondary font-semibold">Aktif Model</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight mt-1">20 Ekim Çekilişi İçin AI Tahminleri</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">Kazanan AI Algoritması ile geçmiş 1,420 çekilişin frekans analiziyle üretilen en yüksek olasılıklı 5 kolon önerisi.</p>
+<!-- Realtime Neural Analysis Indicator -->
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/60 rounded-xl p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Monte Carlo Simülasyonu: 1.2M iterasyon</span>
+</div>
+<span class="font-label-numeric-md text-label-numeric-md text-secondary font-bold">99.4% F1-Skor</span>
+</div>
+</div>
+<!-- Region Switcher Segmented Control -->
+<div class="bg-surface-container-lowest p-1 rounded-xl flex items-center mb-space-sm">
+<button class="flex-1 py-2 rounded-lg bg-surface-container-high text-on-surface font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-sm transition-all" id="btn-tr" type="button">
+<span>🇹🇷</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Türkiye</span>
+</button>
+<button class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm flex items-center justify-center gap-2 transition-all" id="btn-eu" type="button">
+<span>🇪🇺</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Avrupa</span>
+</button>
+</div>
+<!-- Game Selector Filter Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto py-space-xs mb-space-md no-scrollbar">
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm shadow-md flex items-center gap-1.5 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+<span>Çılgın Sayısal</span>
+</button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm transition-colors">
+<span>Süper Loto</span>
+</button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm transition-colors">
+<span>Şans Topu</span>
+</button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm transition-colors">
+<span>EuroMillions</span>
+</button>
+</div>
+<!-- AI Prediction Cards List -->
+<div class="flex flex-col gap-space-sm" id="columns-container">
+<!-- Group 1 (Selected by default) -->
+<div class="column-card relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-md transition-all duration-200" data-cost="20" data-selected="true">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+            1
+          </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Grup 1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sıcak Algoritma Varyantı</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 text-secondary">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold">%94.2</span>
+</div>
+<!-- Custom Checkbox -->
+<label class="cursor-pointer relative flex items-center p-1">
+<input checked="" class="peer sr-only group-checkbox" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-lowest peer-checked:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Balls Matrix: 5 Primary + 2 Star Balls -->
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<!-- Celtic Blue Primary Balls -->
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          07
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          19
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          33
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          42
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          58
+        </div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 shrink-0"></div>
+<!-- Vanilla Star Balls -->
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          04
+        </div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          11
+        </div>
+</div>
+</div>
+<!-- Group 2 (Selected by default) -->
+<div class="column-card relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-md transition-all duration-200" data-cost="20" data-selected="true">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+            2
+          </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Grup 2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Poisson Dağılım Modeli</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 text-secondary">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold">%91.8</span>
+</div>
+<label class="cursor-pointer relative flex items-center p-1">
+<input checked="" class="peer sr-only group-checkbox" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-lowest peer-checked:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          03
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          14
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          26
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          61
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          79
+        </div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 shrink-0"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          02
+        </div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          09
+        </div>
+</div>
+</div>
+<!-- Group 3 (Selected by default) -->
+<div class="column-card relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-md transition-all duration-200" data-cost="20" data-selected="true">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+            3
+          </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Grup 3</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Kayıp Periyot Dengeleyici</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 text-secondary">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold">%89.5</span>
+</div>
+<label class="cursor-pointer relative flex items-center p-1">
+<input checked="" class="peer sr-only group-checkbox" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-lowest peer-checked:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          12
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          25
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          40
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          52
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          88
+        </div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 shrink-0"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          06
+        </div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          10
+        </div>
+</div>
+</div>
+<!-- Group 4 (Unselected) -->
+<div class="column-card relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-md transition-all duration-200 opacity-80" data-cost="20" data-selected="false">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+            4
+          </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Grup 4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sıcak &amp; Soğuk Hibrit</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 text-secondary">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold">%87.1</span>
+</div>
+<label class="cursor-pointer relative flex items-center p-1">
+<input class="peer sr-only group-checkbox" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-lowest peer-checked:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          05
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          18
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          31
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          49
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          73
+        </div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 shrink-0"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          01
+        </div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          08
+        </div>
+</div>
+</div>
+<!-- Group 5 (Unselected) -->
+<div class="column-card relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-md transition-all duration-200 opacity-80" data-cost="20" data-selected="false">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+            5
+          </div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface block">Grup 5</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Kombinasyon Sapma Analizi</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 text-secondary">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span class="font-label-numeric-md text-label-numeric-md font-bold">%85.9</span>
+</div>
+<label class="cursor-pointer relative flex items-center p-1">
+<input class="peer sr-only group-checkbox" type="checkbox"/>
+<div class="w-6 h-6 rounded-lg bg-surface-container-lowest peer-checked:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          11
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          22
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          37
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          68
+        </div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_2px_10px_rgba(57,113,184,0.4)] shrink-0">
+          84
+        </div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 shrink-0"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          05
+        </div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-numeric-lg text-label-numeric-lg shadow-[0_0_12px_rgba(246,230,165,0.4)] shrink-0 font-bold">
+          12
+        </div>
+</div>
+</div>
+</div>
+<!-- Micro Insight Pill & Reroll Button -->
+<div class="mt-space-md flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-tertiary">bolt</span>
+<span class="font-body-sm text-body-sm">Son güncelleme: 3 dk önce</span>
+</div>
+<button class="flex items-center gap-1.5 text-primary hover:text-on-primary-container transition-colors py-1 px-2.5 rounded-lg bg-surface-container active:scale-95">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Yeniden Hesapla</span>
+</button>
+</div>
+<!-- Sticky Bottom Action Bar with Total Calculation -->
+<div class="fixed bottom-20 inset-x-0 z-40 px-margin py-space-sm bg-surface-container-lowest/90 backdrop-blur-xl shadow-2xl">
+<div class="max-w-md mx-auto flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">shopping_bag</span>
+<span id="selected-summary">3 Kolon Seçildi</span>
+</span>
+<span class="font-label-numeric-md text-label-numeric-md text-secondary font-bold" id="total-price">Toplam: ₺60</span>
+</div>
+<button class="w-full h-12 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-lg hover:brightness-110 active:scale-[0.98] transition-all" id="save-button">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>Seçilenleri Kaydet</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const cards = document.querySelectorAll('.column-card');
+    const summaryText = document.getElementById('selected-summary');
+    const totalPriceText = document.getElementById('total-price');
+    const saveButton = document.getElementById('save-button');
+    const pricePerColumn = 20;
+
+    function updateTotals() {
+      let selectedCount = 0;
+      cards.forEach(card => {
+        const checkbox = card.querySelector('.group-checkbox');
+        if (checkbox.checked) {
+          selectedCount++;
+          card.classList.remove('opacity-80');
+          card.classList.add('shadow-lg');
+        } else {
+          card.classList.add('opacity-80');
+          card.classList.remove('shadow-lg');
+        }
+      });
+
+      const total = selectedCount * pricePerColumn;
+      summaryText.textContent = `${selectedCount} Kolon Seçildi`;
+      totalPriceText.textContent = `Toplam: ₺${total}`;
+
+      if (selectedCount === 0) {
+        saveButton.setAttribute('disabled', 'true');
+        saveButton.classList.add('opacity-50', 'pointer-events-none');
+      } else {
+        saveButton.removeAttribute('disabled');
+        saveButton.classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+
+    cards.forEach(card => {
+      const checkbox = card.querySelector('.group-checkbox');
+      checkbox.addEventListener('change', () => {
+        updateTotals();
+      });
+    });
+
+    // Region Switcher Microinteraction
+    const btnTr = document.getElementById('btn-tr');
+    const btnEu = document.getElementById('btn-eu');
+
+    if (btnTr && btnEu) {
+      btnTr.addEventListener('click', () => {
+        btnTr.classList.add('bg-surface-container-high', 'text-on-surface');
+        btnTr.classList.remove('text-on-surface-variant');
+        btnEu.classList.remove('bg-surface-container-high', 'text-on-surface');
+        btnEu.classList.add('text-on-surface-variant');
+      });
+
+      btnEu.addEventListener('click', () => {
+        btnEu.classList.add('bg-surface-container-high', 'text-on-surface');
+        btnEu.classList.remove('text-on-surface-variant');
+        btnTr.classList.remove('bg-surface-container-high', 'text-on-surface');
+        btnTr.classList.add('text-on-surface-variant');
+      });
+    }
+
+    // Save CTA feedback
+    if (saveButton) {
+      saveButton.addEventListener('click', () => {
+        const originalText = saveButton.innerHTML;
+        saveButton.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">check_circle</span> <span>Kaydedildi!</span>`;
+        setTimeout(() => {
+          saveButton.innerHTML = originalText;
+        }, 1500);
+      });
+    }
+
+    updateTotals();
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-[#0d1b33]/95 backdrop-blur-xl border-t border-[#2d3449]/80 shadow-[0_-4px_24px_rgba(0,0,0,0.6)]" data-active-classes="text-[#3971b8] font-bold [&amp;&gt;div]:bg-[#3971b8]/20 [&amp;&gt;div&gt;span]:text-[#3971b8]"><div class="flex justify-around items-center h-20 px-space-xs relative"><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="home" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">confirmation_number</span></div><span class="font-label-sm text-label-sm">Home</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 transition-all text-[#3971b8] font-bold [&amp;&gt;div]:bg-[#3971b8]/20 [&amp;&gt;div&gt;span]:text-[#3971b8]" data-path="lucky-ai" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">auto_awesome</span></div><span class="font-label-sm text-label-sm">Lucky AI</span></a><div class="flex flex-col items-center justify-center min-w-[64px] relative -top-3.5"><a class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#225fa5] via-[#3971b8] to-[#7bd0ff] text-[#f2f5ff] flex items-center justify-center shadow-[0_8px_24px_rgba(57,113,184,0.55),0_0_16px_rgba(57,113,184,0.35)] border-2 border-[#a6c8ff]/40 active:scale-95 transition-transform" data-path="scan" href="#"><span class="material-symbols-outlined text-[30px]">barcode_scanner</span></a><span class="font-label-sm text-label-sm text-[#a6c8ff] font-semibold mt-1">Scan</span></div><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="results" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">emoji_events</span></div><span class="font-label-sm text-label-sm">Results</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[56px] h-14 text-[#c2c6d2] hover:text-[#f2f5ff] transition-all" data-path="report" href="#"><div class="w-9 h-8 rounded-xl flex items-center justify-center transition-all"><span class="material-symbols-outlined text-[24px]">analytics</span></div><span class="font-label-sm text-label-sm">Report</span></a></div></nav>
+</body></html>

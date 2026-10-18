@@ -1,25 +1,48 @@
 {
   "expo": {
     "name": "PrizeVision",
-    "slug": "PrizeVision",
+    "slug": "prizevision",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "scheme": "prizevision",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0C3B2E"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.prizevision.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Kupon taramak için kamera gerekli",
+        "NSPhotoLibraryUsageDescription": "Kupon fotoğrafı seçmek için galeri erişimi gerekli"
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0C3B2E",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "package": "com.prizevision.app",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "plugins": [
+      "expo-router",
+      "expo-camera",
+      [
+        "expo-notifications",
+        { "color": "#FFBA00" }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
     }
   }
 }
