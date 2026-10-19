@@ -7,14 +7,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, radius } from '../../src/theme/tokens';
-import { getTickets } from '../../src/services/storage';
-import { checkTicket } from '../../src/services/api';
-import { updateTicket } from '../../src/services/storage';
+import { getTickets, updateTicket } from '../../src/services/storage';
+import { checkTicket, fetchJackpot } from '../../src/services/api';
 import { requestPermissions, registerBackgroundTask } from '../../src/services/notifications';
 import TicketCard from '../../src/components/TicketCard';
 import { Ticket } from '../../src/types';
 
-const JACKPOT = 210_000_000;
+const EUROMILLIONS_GAME = 'euromillions';
+const JACKPOT_FALLBACK = 210_000_000;
 // Next EuroMillions draw: every Tuesday & Friday at 21:00 CET (UTC+1)
 function getNextDrawDate(): Date {
   const now = new Date();
@@ -47,6 +47,7 @@ function useCountdown(target: Date) {
 export default function HomeScreen() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [jackpot, setJackpot] = useState(JACKPOT_FALLBACK);
   const insets = useSafeAreaInsets();
   const nextDraw = getNextDrawDate();
   const countdown = useCountdown(nextDraw);
@@ -62,6 +63,7 @@ export default function HomeScreen() {
   useEffect(() => {
     requestPermissions();
     registerBackgroundTask();
+    fetchJackpot(EUROMILLIONS_GAME).then((v) => { if (v) setJackpot(v); });
   }, []);
 
   const onRefresh = async () => {
@@ -120,7 +122,7 @@ export default function HomeScreen() {
       >
         <View style={styles.jackpotCard}>
           <Text style={styles.jackpotLabel}>🎯 EuroMillions Jackpot</Text>
-          <Text style={styles.jackpotAmount}>€{(JACKPOT / 1_000_000).toFixed(0)}M</Text>
+          <Text style={styles.jackpotAmount}>€{(jackpot / 1_000_000).toFixed(0)}M</Text>
           <Text style={styles.jackpotSub}>{drawLabel} · 21:00 CET</Text>
           <View style={styles.countdownRow}>
             <View style={styles.countdownItem}>

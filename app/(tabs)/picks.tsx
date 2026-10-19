@@ -6,6 +6,18 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, radius } from '../../src/theme/tokens';
+
+function getNextDrawDate(): string {
+  const now = new Date();
+  for (let i = 0; i <= 7; i++) {
+    const d = new Date(now);
+    d.setDate(now.getDate() + i);
+    d.setHours(21, 0, 0, 0);
+    if ([2, 5].includes(d.getDay()) && d > now)
+      return d.toISOString().slice(0, 10);
+  }
+  return new Date().toISOString().slice(0, 10);
+}
 import { fetchLatestDraws } from '../../src/services/api';
 import { generateAIGroups } from '../../src/services/aiPicks';
 import { saveTicket, generateId } from '../../src/services/storage';
@@ -56,7 +68,7 @@ export default function PicksScreen() {
         lotteryId: EUROMILLIONS_ID,
         mainBalls: g.mainBalls,
         starBalls: g.starBalls,
-        drawDate: '2026-10-20',
+        drawDate: getNextDrawDate(),
         status: 'pending',
         checkResult: null,
         savedAt: new Date().toISOString(),

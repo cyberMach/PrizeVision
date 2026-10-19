@@ -3,6 +3,30 @@ import { LotteryDraw, CheckResult } from '../types';
 const BASE_URL = process.env.EXPO_PUBLIC_LOTTERY_BASE_URL ?? '';
 const API_KEY = process.env.EXPO_PUBLIC_LOTTERY_API_KEY ?? '';
 export const OCR_KEY = process.env.EXPO_PUBLIC_OCR_SPACE_API_KEY ?? '';
+const MAGAYO_KEY = process.env.EXPO_PUBLIC_MAGAYO_API_KEY ?? '';
+
+const jackpotCache = new Map<string, { value: number; ts: number }>();
+const JACKPOT_TTL = 30 * 60 * 1000;
+
+export async function fetchJackpot(game: string): Promise<number | null> {
+  const cached = jackpotCache.get(game);
+  if (cached && Date.now() - cached.ts < JACKPOT_TTL) return cached.value;
+  try {
+    const res = await fetch(
+      `https://www.magayo.com/api/jackpot.php?api_key=${MAGAYO_KEY}&game=${game}`,
+    );
+    if (!res.ok) return null;
+    const json = await res.json();
+    const value = Number(json.jackpot);
+    if (!isNaN(value) && value > 0) {
+      jackpotCache.set(game, { value, ts: Date.now() });
+      return value;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 const headers = {
   Accept: 'application/json',
