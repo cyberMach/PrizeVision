@@ -8,7 +8,7 @@
     "scheme": "prizevision",
     "userInterfaceStyle": "dark",
     "splash": {
-      "backgroundColor": "#0C3B2E"
+      "backgroundColor": "#0A0F1E"
     },
     "ios": {
       "supportsTablet": false,
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#0C3B2E",
+        "backgroundColor": "#0A0F1E",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"

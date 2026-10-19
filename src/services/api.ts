@@ -3,23 +3,23 @@ import { LotteryDraw, CheckResult } from '../types';
 const BASE_URL = process.env.EXPO_PUBLIC_LOTTERY_BASE_URL ?? '';
 const API_KEY = process.env.EXPO_PUBLIC_LOTTERY_API_KEY ?? '';
 export const OCR_KEY = process.env.EXPO_PUBLIC_OCR_SPACE_API_KEY ?? '';
-const MAGAYO_KEY = process.env.EXPO_PUBLIC_MAGAYO_API_KEY ?? '';
 
 const jackpotCache = new Map<string, { value: number; ts: number }>();
 const JACKPOT_TTL = 30 * 60 * 1000;
 
-export async function fetchJackpot(game: string): Promise<number | null> {
-  const cached = jackpotCache.get(game);
+// Fetches jackpot from lotteryresultsfeed /lottery/jackpot endpoint.
+// Falls back to null so callers can show a static placeholder.
+export async function fetchJackpot(lotteryId: number): Promise<number | null> {
+  const key = String(lotteryId);
+  const cached = jackpotCache.get(key);
   if (cached && Date.now() - cached.ts < JACKPOT_TTL) return cached.value;
   try {
-    const res = await fetch(
-      `https://www.magayo.com/api/jackpot.php?api_key=${MAGAYO_KEY}&game=${game}`,
-    );
+    const res = await fetch(`${BASE_URL}/lottery/jackpot?id=${lotteryId}`, { headers });
     if (!res.ok) return null;
     const json = await res.json();
-    const value = Number(json.jackpot);
+    const value = Number(json.jackpot ?? json.amount ?? json.value);
     if (!isNaN(value) && value > 0) {
-      jackpotCache.set(game, { value, ts: Date.now() });
+      jackpotCache.set(key, { value, ts: Date.now() });
       return value;
     }
     return null;

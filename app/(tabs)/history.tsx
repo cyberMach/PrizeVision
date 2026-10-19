@@ -91,11 +91,8 @@ export default function HistoryScreen() {
             <TicketCard
               key={t.id}
               ticket={t}
-              onPress={() =>
-                t.status === 'pending'
-                  ? handleCheck(t)
-                  : handleDelete(t.id)
-              }
+              onPress={t.status !== 'pending' ? () => handleDelete(t.id) : undefined}
+              onCheck={t.status === 'pending' ? () => handleCheck(t) : undefined}
             />
           ))
         )}

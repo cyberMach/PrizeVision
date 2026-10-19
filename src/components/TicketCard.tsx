@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { colors, radius, spacing } from '../theme/tokens';
 import { Ticket } from '../types';
 import LotteryBall from './LotteryBall';
@@ -7,6 +8,7 @@ import LotteryBall from './LotteryBall';
 interface Props {
   ticket: Ticket;
   onPress?: () => void;
+  onCheck?: () => void;
 }
 
 const STATUS_LABEL: Record<string, string> = {
@@ -23,7 +25,7 @@ const STATUS_COLOR: Record<string, string> = {
   expired: colors.textMuted,
 };
 
-export default function TicketCard({ ticket, onPress }: Props) {
+export default function TicketCard({ ticket, onPress, onCheck }: Props) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
       <View style={styles.header}>
@@ -71,7 +73,14 @@ export default function TicketCard({ ticket, onPress }: Props) {
         <Text style={styles.footerText}>
           {ticket.isAIPick ? '✦ AI Seçimi' : 'Kişisel Bilet'} · {ticket.id.slice(-6).toUpperCase()}
         </Text>
-        <Text style={styles.footerLink}>Detay &amp; QR ↗</Text>
+        {ticket.status === 'pending' && onCheck ? (
+          <TouchableOpacity style={styles.checkBtn} onPress={onCheck}>
+            <MaterialIcons name="search" color={colors.textDark} size={14} />
+            <Text style={styles.checkBtnText}>Kontrol Et</Text>
+          </TouchableOpacity>
+        ) : (
+          <Text style={styles.footerMuted}>{ticket.status === 'won' ? '🏆 Kazandı' : ticket.status === 'checked' ? '✓ Kontrol edildi' : ''}</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -158,9 +167,22 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     fontSize: 11,
   },
-  footerLink: {
-    color: colors.gold,
+  checkBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: colors.gold,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: radius.full,
+  },
+  checkBtnText: {
+    color: colors.textDark,
     fontSize: 11,
-    fontWeight: '600',
+    fontWeight: '700',
+  },
+  footerMuted: {
+    color: colors.textMuted,
+    fontSize: 11,
   },
 });

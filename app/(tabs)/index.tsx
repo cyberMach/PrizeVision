@@ -13,7 +13,7 @@ import { requestPermissions, registerBackgroundTask } from '../../src/services/n
 import TicketCard from '../../src/components/TicketCard';
 import { Ticket } from '../../src/types';
 
-const EUROMILLIONS_GAME = 'euromillions';
+const EUROMILLIONS_ID = 728;
 const JACKPOT_FALLBACK = 210_000_000;
 // Next EuroMillions draw: every Tuesday & Friday at 21:00 CET (UTC+1)
 function getNextDrawDate(): Date {
@@ -63,7 +63,7 @@ export default function HomeScreen() {
   useEffect(() => {
     requestPermissions();
     registerBackgroundTask();
-    fetchJackpot(EUROMILLIONS_GAME).then((v) => { if (v) setJackpot(v); });
+    fetchJackpot(EUROMILLIONS_ID).then((v) => { if (v) setJackpot(v); });
   }, []);
 
   const onRefresh = async () => {
@@ -175,7 +175,7 @@ export default function HomeScreen() {
             <TicketCard
               key={t.id}
               ticket={t}
-              onPress={() => t.status === 'pending' ? handleCheck(t) : null}
+              onCheck={t.status === 'pending' ? () => handleCheck(t) : undefined}
             />
           ))
         )}
