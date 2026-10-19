@@ -21,21 +21,22 @@ function getNextDrawDate(): string {
 import { fetchLatestDraws } from '../../src/services/api';
 import { generateAIGroups } from '../../src/services/aiPicks';
 import { saveTicket, generateId } from '../../src/services/storage';
+import { SUPPORTED_LOTTERIES, LotteryDef } from '../../src/data/lotteries';
 import LotteryBall from '../../src/components/LotteryBall';
 import { AIGroup } from '../../src/types';
 
-const EUROMILLIONS_ID = 728;
-
 export default function PicksScreen() {
   const insets = useSafeAreaInsets();
+  const [lottery, setLottery] = useState<LotteryDef>(SUPPORTED_LOTTERIES[0]);
+  const [showPicker, setShowPicker] = useState(false);
   const [groups, setGroups] = useState<AIGroup[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  const load = async () => {
+  const load = async (l: LotteryDef = lottery) => {
     setLoading(true);
     try {
-      const draws = await fetchLatestDraws(EUROMILLIONS_ID, 50);
+      const draws = await fetchLatestDraws(l.id, 50);
       setGroups(generateAIGroups(draws));
     } catch {
       setGroups(generateAIGroups([]));
@@ -64,8 +65,8 @@ export default function PicksScreen() {
     for (const g of selected) {
       await saveTicket({
         id: generateId(),
-        lottery: 'EuroMillions',
-        lotteryId: EUROMILLIONS_ID,
+        lottery: lottery.label,
+        lotteryId: lottery.id,
         mainBalls: g.mainBalls,
         starBalls: g.starBalls,
         drawDate: getNextDrawDate(),
@@ -88,10 +89,31 @@ export default function PicksScreen() {
         <View style={styles.logo}><Text style={styles.logoText}>W</Text></View>
         <Text style={styles.title}>Lucky AI</Text>
         <View style={{ flex: 1 }} />
-        <TouchableOpacity onPress={load} style={styles.iconBtn}>
+        <TouchableOpacity
+          style={styles.lotteryChip}
+          onPress={() => setShowPicker(!showPicker)}
+        >
+          <Text style={styles.lotteryChipText}>{lottery.label}</Text>
+          <MaterialIcons name="expand-more" color={colors.gold} size={16} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => load()} style={styles.iconBtn}>
           <MaterialIcons name="refresh" color={colors.textMuted} size={20} />
         </TouchableOpacity>
       </View>
+
+      {showPicker && (
+        <View style={styles.pickerDropdown}>
+          {SUPPORTED_LOTTERIES.map((l) => (
+            <TouchableOpacity
+              key={l.id}
+              style={[styles.pickerItem, l.id === lottery.id && styles.pickerItemActive]}
+              onPress={() => { setLottery(l); setShowPicker(false); load(l); }}
+            >
+              <Text style={[styles.pickerItemText, l.id === lottery.id && { color: colors.gold }]}>{l.label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
 
       <View style={styles.infoBanner}>
         <Text style={styles.infoIcon}>⚡</Text>
@@ -178,6 +200,12 @@ const styles = StyleSheet.create({
   logoText: { color: colors.textDark, fontSize: 16, fontWeight: '900' },
   title: { color: colors.textPrimary, fontSize: 18, fontWeight: '700' },
   iconBtn: { padding: 4 },
+  lotteryChip: { flexDirection: 'row', alignItems: 'center', gap: 3, backgroundColor: colors.bgCard, paddingHorizontal: 10, paddingVertical: 5, borderRadius: radius.full, borderWidth: 1, borderColor: colors.borderStrong, marginRight: 6 },
+  lotteryChipText: { color: colors.textPrimary, fontSize: 11, fontWeight: '700' },
+  pickerDropdown: { backgroundColor: colors.bgCard, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.borderStrong, overflow: 'hidden', marginBottom: spacing.sm },
+  pickerItem: { paddingHorizontal: spacing.md, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: colors.border },
+  pickerItemActive: { backgroundColor: 'rgba(255,186,0,0.1)' },
+  pickerItemText: { color: colors.textPrimary, fontSize: 14, fontWeight: '600' },
   infoBanner: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
     backgroundColor: colors.bgCard, borderRadius: radius.lg,
