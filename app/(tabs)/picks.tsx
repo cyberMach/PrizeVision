@@ -3,6 +3,7 @@ import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
   ActivityIndicator, Alert, StatusBar,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, radius } from '../../src/theme/tokens';
 import { fetchLatestDraws } from '../../src/services/api';
@@ -14,6 +15,7 @@ import { AIGroup } from '../../src/types';
 const EUROMILLIONS_ID = 728;
 
 export default function PicksScreen() {
+  const insets = useSafeAreaInsets();
   const [groups, setGroups] = useState<AIGroup[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -94,7 +96,7 @@ export default function PicksScreen() {
           <Text style={styles.loadingText}>Çekiliş verileri analiz ediliyor...</Text>
         </View>
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 }}>
           {groups.map((g) => (
             <TouchableOpacity
               key={g.id}
@@ -129,12 +131,11 @@ export default function PicksScreen() {
               </View>
             </TouchableOpacity>
           ))}
-          <View style={{ height: 120 }} />
         </ScrollView>
       )}
 
       {!loading && (
-        <View style={styles.bottomBar}>
+        <View style={[styles.bottomBar, { paddingBottom: insets.bottom > 0 ? insets.bottom : spacing.sm }]}>
           <Text style={styles.bottomCount}>
             {selectedCount > 0 ? `${selectedCount} Kolon Seçildi` : 'Kolon seçin'}
           </Text>
@@ -196,10 +197,11 @@ const styles = StyleSheet.create({
   ballsRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   separator: { width: 1, height: 24, backgroundColor: colors.border, marginHorizontal: 2 },
   bottomBar: {
-    position: 'absolute', bottom: 72, left: spacing.md, right: spacing.md,
     flexDirection: 'row', alignItems: 'center', gap: spacing.sm,
-    backgroundColor: colors.bgLayer1, borderRadius: radius.lg,
-    borderWidth: 1, borderColor: colors.border, padding: spacing.sm,
+    backgroundColor: colors.bgLayer1,
+    borderTopWidth: 1, borderTopColor: colors.border,
+    paddingTop: spacing.sm, paddingHorizontal: spacing.sm,
+    marginHorizontal: -spacing.md,
   },
   bottomCount: { color: colors.textMuted, fontSize: 12, flex: 1 },
   saveBtn: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.gold, paddingHorizontal: 16, paddingVertical: 10, borderRadius: radius.md },

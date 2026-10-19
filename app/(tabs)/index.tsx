@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  RefreshControl, StatusBar,
+  RefreshControl, StatusBar, Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect, router } from 'expo-router';
@@ -100,10 +100,16 @@ export default function HomeScreen() {
         </View>
         <Text style={styles.title}>PrizeVision</Text>
         <View style={{ flex: 1 }} />
-        <TouchableOpacity style={styles.iconBtn}>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => Alert.alert('Bildirimler', 'Yeni bildirim yok.\n\nÇekiliş günleri otomatik kontrol aktif.')}
+        >
           <MaterialIcons name="notifications-none" color={colors.textSecondary} size={22} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconBtn}>
+        <TouchableOpacity
+          style={styles.iconBtn}
+          onPress={() => Alert.alert('PrizeVision', 'tatasagun@gmail.com\n\nSürüm: 1.0.0\nAPI: lotteryresultsfeed.com')}
+        >
           <MaterialIcons name="account-circle" color={colors.textSecondary} size={22} />
         </TouchableOpacity>
       </View>

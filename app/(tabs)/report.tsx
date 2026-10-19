@@ -4,12 +4,31 @@ import {
 } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
-import { BarChart } from 'react-native-gifted-charts';
 import { colors, spacing, radius } from '../../src/theme/tokens';
 import { getTickets } from '../../src/services/storage';
 import { Ticket } from '../../src/types';
 
 interface MonthData { month: string; value: number; frontColor: string }
+
+function SimpleBarChart({ data }: { data: MonthData[] }) {
+  const max = Math.max(...data.map((d) => d.value), 1);
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'flex-end', height: 120, gap: 8, paddingTop: 8 }}>
+      {data.map((d) => (
+        <View key={d.month} style={{ flex: 1, alignItems: 'center', gap: 4 }}>
+          <Text style={{ color: colors.textMuted, fontSize: 9 }}>
+            {d.value > 0 ? `€${(d.value / 1000).toFixed(0)}K` : ''}
+          </Text>
+          <View style={{
+            width: '100%', height: Math.max(4, (d.value / max) * 80),
+            backgroundColor: colors.gold, borderRadius: 3,
+          }} />
+          <Text style={{ color: colors.textMuted, fontSize: 10 }}>{d.month}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
 
 function groupByMonth(tickets: Ticket[]): MonthData[] {
   const map: Record<string, number> = {};
@@ -90,25 +109,10 @@ export default function ReportScreen() {
         <View style={styles.chartCard}>
           <Text style={styles.chartTitle}>Aylık Kazanç (€)</Text>
           {chartData.length > 0 ? (
-            <BarChart
-              data={chartData}
-              barWidth={32}
-              spacing={16}
-              roundedTop
-              xAxisThickness={1}
-              yAxisThickness={0}
-              xAxisColor={colors.border}
-              yAxisTextStyle={{ color: colors.textMuted, fontSize: 10 }}
-              xAxisLabelTextStyle={{ color: colors.textMuted, fontSize: 10 }}
-              noOfSections={4}
-              maxValue={Math.max(...chartData.map((d) => d.value), 100)}
-              labelWidth={28}
-              showGradient={false}
-              isAnimated
-              animationDuration={600}
-            />
+            <SimpleBarChart data={chartData} />
           ) : (
             <View style={styles.emptyChart}>
+              <MaterialIcons name="bar-chart" color={colors.textMuted} size={40} />
               <Text style={styles.emptyChartText}>Henüz kazanç verisi yok</Text>
             </View>
           )}
