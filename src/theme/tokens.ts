@@ -1,21 +1,32 @@
 export const colors = {
-  bgPrimary: '#0C3B2E',
-  bgLayer1: '#0F1F18',
-  bgLayer2: '#163327',
-  bgCard: '#1A3D2E',
-  bgCardHigh: '#224D3A',
-  surface: '#8D8773',
-  accent: '#BB8A52',
-  gold: '#FFBA00',
-  goldDim: '#F59E0B',
-  textPrimary: '#FFFFFF',
-  textSecondary: '#F8FAFC',
-  textMuted: '#94A3B8',
-  textDark: '#0C3B2E',
+  // Backgrounds — derin lacivert, premium hissi
+  bgPrimary: '#0A0F1E',
+  bgLayer1: '#0D1424',
+  bgLayer2: '#111929',
+  bgCard: '#141D2E',
+  bgCardHigh: '#1A2640',
+
+  // Accents — tek altın sistemi
+  gold: '#FFBA00',        // primary CTA, jackpot, aktif tab
+  goldDim: '#CC9600',     // hover / pressed state
+  accent: '#BB8A52',      // secondary / disabled / score badge
+
+  // Surfaces
+  surface: '#64748B',     // çok arka planda kalan elemanlar
+
+  // Text
+  textPrimary: '#F1F5F9',
+  textSecondary: '#CBD5E1',
+  textMuted: '#64748B',
+  textDark: '#0A0F1E',    // altın buton üzeri yazı
+
+  // Semantic
   success: '#22C55E',
   error: '#EF4444',
-  border: 'rgba(255,255,255,0.08)',
-  borderStrong: 'rgba(255,255,255,0.15)',
+
+  // Borders — ince ve net
+  border: 'rgba(255,255,255,0.07)',
+  borderStrong: 'rgba(255,255,255,0.14)',
 };
 
 export const fonts = {
