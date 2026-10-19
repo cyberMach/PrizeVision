@@ -4,7 +4,7 @@ import {
   RefreshControl, StatusBar, Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useFocusEffect, router } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, radius } from '../../src/theme/tokens';
 import { getTickets } from '../../src/services/storage';
@@ -178,25 +178,8 @@ export default function HomeScreen() {
           ))
         )}
 
-        <View style={{ height: 80 + insets.bottom }} />
+        <View style={{ height: 16 + insets.bottom }} />
       </ScrollView>
-
-      <View style={[styles.fabRow, { bottom: 72 + insets.bottom }]}>
-        <TouchableOpacity
-          style={[styles.fab, { backgroundColor: colors.bgCard, flex: 1 }]}
-          onPress={() => router.push('/(tabs)/scan')}
-        >
-          <MaterialIcons name="qr-code-scanner" color={colors.gold} size={20} />
-          <Text style={[styles.fabText, { color: colors.gold }]}>Kupon Tara</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.fab, { backgroundColor: colors.gold, flex: 1 }]}
-          onPress={() => router.push('/(tabs)/picks')}
-        >
-          <MaterialIcons name="auto-awesome" color={colors.textDark} size={20} />
-          <Text style={[styles.fabText, { color: colors.textDark }]}>AI Önerisi</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -236,7 +219,4 @@ const styles = StyleSheet.create({
   emptyState: { alignItems: 'center', paddingVertical: 48, gap: 8 },
   emptyText: { color: colors.textSecondary, fontSize: 16, fontWeight: '600' },
   emptySubText: { color: colors.textMuted, fontSize: 13 },
-  fabRow: { position: 'absolute', left: spacing.md, right: spacing.md, flexDirection: 'row', gap: spacing.sm },
-  fab: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 14, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border },
-  fabText: { fontSize: 14, fontWeight: '700' },
 });
