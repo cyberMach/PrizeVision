@@ -3,6 +3,7 @@ import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
   RefreshControl, StatusBar,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect, router } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, radius } from '../../src/theme/tokens';
@@ -14,10 +15,42 @@ import TicketCard from '../../src/components/TicketCard';
 import { Ticket } from '../../src/types';
 
 const JACKPOT = 210_000_000;
+// Next EuroMillions draw: every Tuesday & Friday at 21:00 CET (UTC+1)
+function getNextDrawDate(): Date {
+  const now = new Date();
+  const drawDays = [2, 5]; // Tuesday=2, Friday=5
+  for (let i = 0; i <= 7; i++) {
+    const d = new Date(now);
+    d.setDate(now.getDate() + i);
+    d.setHours(21, 0, 0, 0); // 21:00 CET = 20:00 UTC, approximate with local
+    if (drawDays.includes(d.getDay()) && d > now) return d;
+  }
+  return now;
+}
+
+function useCountdown(target: Date) {
+  const calc = () => {
+    const diff = Math.max(0, target.getTime() - Date.now());
+    const g = Math.floor(diff / 86400000);
+    const s = Math.floor((diff % 86400000) / 3600000);
+    const d = Math.floor((diff % 3600000) / 60000);
+    return { g, s, d };
+  };
+  const [time, setTime] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 60000);
+    return () => clearInterval(id);
+  }, [target]);
+  return time;
+}
 
 export default function HomeScreen() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const insets = useSafeAreaInsets();
+  const nextDraw = getNextDrawDate();
+  const countdown = useCountdown(nextDraw);
+  const drawLabel = nextDraw.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' });
 
   const load = useCallback(async () => {
     const data = await getTickets();
@@ -82,7 +115,23 @@ export default function HomeScreen() {
         <View style={styles.jackpotCard}>
           <Text style={styles.jackpotLabel}>🎯 EuroMillions Jackpot</Text>
           <Text style={styles.jackpotAmount}>€{(JACKPOT / 1_000_000).toFixed(0)}M</Text>
-          <Text style={styles.jackpotSub}>Salı 20 Ekim 2026 · 22:00 CET</Text>
+          <Text style={styles.jackpotSub}>{drawLabel} · 21:00 CET</Text>
+          <View style={styles.countdownRow}>
+            <View style={styles.countdownItem}>
+              <Text style={styles.countdownNum}>{String(countdown.g).padStart(2, '0')}</Text>
+              <Text style={styles.countdownUnit}>GÜN</Text>
+            </View>
+            <Text style={styles.countdownSep}>:</Text>
+            <View style={styles.countdownItem}>
+              <Text style={styles.countdownNum}>{String(countdown.s).padStart(2, '0')}</Text>
+              <Text style={styles.countdownUnit}>SAAT</Text>
+            </View>
+            <Text style={styles.countdownSep}>:</Text>
+            <View style={styles.countdownItem}>
+              <Text style={styles.countdownNum}>{String(countdown.d).padStart(2, '0')}</Text>
+              <Text style={styles.countdownUnit}>DAKİKA</Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.statsRow}>
@@ -123,10 +172,10 @@ export default function HomeScreen() {
           ))
         )}
 
-        <View style={{ height: 80 }} />
+        <View style={{ height: 80 + insets.bottom }} />
       </ScrollView>
 
-      <View style={styles.fabRow}>
+      <View style={[styles.fabRow, { bottom: 72 + insets.bottom }]}>
         <TouchableOpacity
           style={[styles.fab, { backgroundColor: colors.bgCard, flex: 1 }]}
           onPress={() => router.push('/(tabs)/scan')}
@@ -165,7 +214,12 @@ const styles = StyleSheet.create({
   },
   jackpotLabel: { color: colors.textMuted, fontSize: 11, fontWeight: '600', letterSpacing: 0.5, marginBottom: 4 },
   jackpotAmount: { color: colors.gold, fontSize: 36, fontWeight: '800', letterSpacing: -1 },
-  jackpotSub: { color: colors.textMuted, fontSize: 12, marginTop: 2 },
+  jackpotSub: { color: colors.textMuted, fontSize: 12, marginTop: 2, marginBottom: 12 },
+  countdownRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  countdownItem: { alignItems: 'center', backgroundColor: colors.bgCardHigh, borderRadius: radius.sm, paddingHorizontal: 10, paddingVertical: 6, minWidth: 52 },
+  countdownNum: { color: colors.gold, fontSize: 22, fontWeight: '800', letterSpacing: 1 },
+  countdownUnit: { color: colors.textMuted, fontSize: 9, fontWeight: '700', letterSpacing: 0.5 },
+  countdownSep: { color: colors.gold, fontSize: 20, fontWeight: '800', marginBottom: 10 },
   statsRow: { flexDirection: 'row', gap: spacing.sm, marginBottom: spacing.md },
   statCard: { flex: 1, backgroundColor: colors.bgCard, borderRadius: radius.md, padding: spacing.sm, alignItems: 'center', borderWidth: 1, borderColor: colors.border },
   statValue: { color: colors.textPrimary, fontSize: 22, fontWeight: '700' },
@@ -176,7 +230,7 @@ const styles = StyleSheet.create({
   emptyState: { alignItems: 'center', paddingVertical: 48, gap: 8 },
   emptyText: { color: colors.textSecondary, fontSize: 16, fontWeight: '600' },
   emptySubText: { color: colors.textMuted, fontSize: 13 },
-  fabRow: { position: 'absolute', bottom: 72, left: spacing.md, right: spacing.md, flexDirection: 'row', gap: spacing.sm },
+  fabRow: { position: 'absolute', left: spacing.md, right: spacing.md, flexDirection: 'row', gap: spacing.sm },
   fab: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 14, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border },
   fabText: { fontSize: 14, fontWeight: '700' },
 });
