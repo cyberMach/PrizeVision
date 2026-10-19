@@ -77,17 +77,3 @@ export async function checkTicket(params: {
   return json.check as CheckResult;
 }
 
-export async function runOCR(base64Image: string): Promise<string> {
-  const formData = new FormData();
-  formData.append('base64Image', `data:image/jpeg;base64,${base64Image}`);
-  formData.append('apikey', OCR_KEY);
-  formData.append('language', 'eng');
-  formData.append('isOverlayRequired', 'false');
-
-  const res = await fetch('https://api.ocr.space/parse/image', {
-    method: 'POST',
-    body: formData,
-  });
-  const json = await res.json();
-  return json?.ParsedResults?.[0]?.ParsedText ?? '';
-}
